@@ -45,7 +45,8 @@ IPv4 addresses are divided into **5 classes** (A, B, C, D, E) based on the first
 
 ### **Class A**
 
-- **Range**: 1.0.0.0 to 126.255.255.255
+- N.H.H.H
+- **Range**: 1.0.0.0 to 127.255.255.255
 - **Network Part**: First **8 bits (1 octet)**.
 - **Host Part**: Last **24 bits (3 octets)**.
 - **Number of Networks**: \( 2^7 = 128 \) (but 0 and 127 are reserved).
@@ -64,6 +65,8 @@ IPv4 addresses are divided into **5 classes** (A, B, C, D, E) based on the first
 - **Hosts per Network**: \( 2^{16} - 2 = 65,534 \).
 - **Purpose**: Medium-sized networks, e.g., universities or regional ISPs.
 - **Example**: **172.16.0.1**
+
+`NOTE:` Network Id is where all host part are 0.
 
 ---
 
