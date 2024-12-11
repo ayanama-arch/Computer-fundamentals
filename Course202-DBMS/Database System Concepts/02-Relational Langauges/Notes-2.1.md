@@ -179,4 +179,102 @@ students(student_id, name, age)
 
 These operations form the core of relational algebra, which is used to manipulate data in relational databases.
 
-page-18 to be continued
+## 1. **Joins**
+
+A **Join** combines related data from different tables (relations) based on a common attribute.
+
+- **Natural Join (⨝)**: Combining customer and order information.
+
+  - Example: You have two tables:
+
+    - `Customers` (CustomerID, Name, Address)
+    - `Orders` (OrderID, CustomerID, Amount)
+
+    `Customers ⨝ Orders` will return a new relation that contains the customer information along with their order details, where the `CustomerID` matches in both tables.
+
+- **Theta Join (⨝θ)**: Joining employees with projects based on budget condition.
+
+  - Example: Suppose you have two tables:
+
+    - `Employees` (EmpID, Name, Department)
+    - `Projects` (ProjID, EmpID, Budget)
+
+    `Employees ⨝(Budget > 10000) Projects` will return the employees working on projects with a budget greater than $10,000.
+
+- **Outer Join (⟕, ⟖, ⟗)**: Returning all employees and the projects they are working on, even if some employees aren’t assigned to any project.
+  - Example: `Employees ⟕ Projects` would include all employees, even if they don't have a corresponding project.
+
+## 2. **Union (∪)**
+
+**Union** combines two sets of data, removing duplicates.
+
+- **Real-Life Example**: Combining two lists of customers from two different stores.
+
+  - Example:
+
+    - Store 1 Customers: `[(1, Alice), (2, Bob)]`
+    - Store 2 Customers: `[(2, Bob), (3, Charlie)]`
+
+    `Store1_Customers ∪ Store2_Customers` will return `[(1, Alice), (2, Bob), (3, Charlie)]`.
+
+## 3. **Set Intersection (∩)**
+
+**Intersection** returns only the rows that appear in both relations.
+
+- **Real-Life Example**: Finding students who are enrolled in both Math and Science courses.
+
+  - Example:
+
+    - Math Students: `[(1, Alice), (2, Bob), (3, Charlie)]`
+    - Science Students: `[(2, Bob), (3, Charlie), (4, David)]`
+
+    `Math_Students ∩ Science_Students` will return `[(2, Bob), (3, Charlie)]`.
+
+## 4. **Set Difference (−)**
+
+**Set Difference** returns rows from the first relation that are not in the second.
+
+- **Real-Life Example**: Finding customers who bought products from one store but not from another.
+
+  - Example:
+
+    - Store 1 Customers: `[(1, Alice), (2, Bob), (3, Charlie)]`
+    - Store 2 Customers: `[(2, Bob), (3, Charlie), (4, David)]`
+
+    `Store1_Customers − Store2_Customers` will return `[(1, Alice)]`.
+
+## 5. **Assignment Operators (←)**
+
+**Assignment** assigns the result of a relational expression to a variable, making it easier to refer to complex results.
+
+- **Real-Life Example**: Assigning the result of a join between employees and departments to a temporary variable for later use.
+  - Example:
+    `EmployeeDept ← Employees ⨝ Departments` assigns the result of the join to `EmployeeDept`, which can then be used in further operations.
+
+## 6. **Rename Operator (ρ)**
+
+**Rename** changes the name of a relation or attributes for clarity or to avoid name conflicts.
+
+- **Real-Life Example**: Renaming a table to make it more meaningful in context.
+
+  - Example: You have a relation called `Orders` that you want to rename as `CustomerOrders`.
+
+    `ρ(CustomerOrders, Orders)` renames `Orders` to `CustomerOrders` for easier identification.
+
+## 7. **Equivalent Queries**
+
+Two queries are **equivalent** if they produce the same result, even if the operations involved are written differently.
+
+- **Real-Life Example**: Simplifying a complex query to an equivalent simpler one.
+  - Example:
+    - Query 1: `R ∪ (R ∩ S)` gives all rows from `R` and any rows that are common between `R` and `S`.
+    - Query 2: `R` gives the same result because the union of `R` and the intersection of `R` with `S` will always be just `R` (if `R` contains all the rows).
+
+## Summary of Symbols Used:
+
+- **⨝**: Join (Natural, Theta, Equi, Outer)
+- **∪**: Union
+- **∩**: Intersection
+- **−**: Set Difference
+- **←**: Assignment
+- **ρ**: Rename
